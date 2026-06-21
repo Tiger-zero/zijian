@@ -1,0 +1,21 @@
+name = "github-star-release-telegram-worker"
+main = "src/index.ts"
+compatibility_date = "2026-06-21"
+
+# Cloudflare cron schedules are static. Run frequently and use CHECK_INTERVAL_MINUTES
+# below to control the effective notification check interval without redeploying.
+[triggers]
+crons = ["*/5 * * * *"]
+
+[vars]
+# Effective check interval, in minutes. You can change this in the Cloudflare dashboard.
+CHECK_INTERVAL_MINUTES = "60"
+# Maximum starred repositories checked during one run.
+MAX_REPOS_PER_RUN = "300"
+
+# Create this KV namespace with:
+#   npx wrangler kv namespace create RELEASE_STATE
+# Then replace the placeholder id below.
+[[kv_namespaces]]
+binding = "RELEASE_STATE"
+id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
