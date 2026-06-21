@@ -1,0 +1,14 @@
+name = "github-star-release-telegram-worker"
+main = "src/index.ts"
+compatibility_date = "2026-06-21"
+
+# Check GitHub starred repositories every hour.
+[triggers]
+crons = ["0 * * * *"]
+
+# Create this KV namespace with:
+#   npx wrangler kv namespace create RELEASE_STATE
+# Then replace the placeholder id below.
+[[kv_namespaces]]
+binding = "RELEASE_STATE"
+id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
